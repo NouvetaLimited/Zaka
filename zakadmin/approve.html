@@ -257,7 +257,7 @@ desired effect
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Account Title</label>
                       <div class="col-sm-10">
-                        <input type="text"  name="title" class="form-control" placeholder="Title" v-model="name">
+                        <input type="text"  name="title" class="form-control form-group" placeholder="Title" v-model="name" >
                       </div>
                     </div>
                   </div><!-- /.box-body -->
@@ -265,9 +265,9 @@ desired effect
                   <!-- Start Box Body -->
                   <div class="box-body">
                   	<div class="form-group">
-                      <label class="col-sm-2 control-label"s>Category</label>
+                      <label class="col-sm-2 control-label">Category</label>
                       <div class="col-sm-10">
-                      	<input type="text" v-model="sector">
+                      	<input type="text" v-model="sector" class="form-group">
                       </div>
                   </div>
                     </div><!-- /.box-body -->
@@ -278,7 +278,7 @@ desired effect
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Account Goal</label>
                       <div class="col-sm-10">
-                        <input type="number" min="1" autocomplete="off"  name="goal" class="form-control onlyNumber" placeholder="Campaign Goal" v-model="amount">
+                        <input type="number" min="1" autocomplete="off"  name="goal" class="form-control onlyNumber form-group" placeholder="Campaign Goal" v-model="amount">
                       </div>
                     </div>
                   </div><!-- /.box-body -->
@@ -288,7 +288,7 @@ desired effect
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Location</label>
                       <div class="col-sm-10">
-                        <input type="text"  name="location" class="form-control onlyNumber" placeholder="Location" v-model="location">
+                        <input type="text"  name="location" class="form-control onlyNumber form-group" placeholder="Location" v-model="location" >
                       </div>
                     </div>
                   </div><!-- /.box-body -->
@@ -298,7 +298,7 @@ desired effect
                     <div class="form-group">
                       <label class="col-sm-2 control-label">About the Account</label>
                       <div class="col-sm-10">
-                        <input type="text" v-model="about">
+                        <input type="textarea" v-model="about" class="form-group form-control">
                       </div>
                     </div>
                   </div><!-- /.box-body -->
@@ -308,7 +308,7 @@ desired effect
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Status</label>
                       <div class="col-sm-10">
-                       <input type="text" v-model="status1">
+                       <input type="text" v-model="status1" class="form-group">
                       </div>
                     </div>
                   </div><!-- /.box-body -->
@@ -340,8 +340,8 @@ desired effect
 
 
                   <div class="box-footer">
-                  	 <a href="campaigns.html" class="btn btn-default">Cancel</a>
-                    <button @click="approveEntrepreneur">Approve</button>
+                  	 <!-- <a href="campaigns.html" class="btn btn-default">Cancel</a> -->
+                    <button @click="approveEntrepreneur" class="btn btn-primary"> <i v-if="loading" class="fa fa-spinner fa-spin"></i> Approve</button>
                   </div>
 
               </div>
@@ -470,7 +470,8 @@ tinymce.init({
 
 initTinymce();
 
-	</script>
+  </script>
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
   </body>
 </html>
 <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
@@ -496,7 +497,8 @@ initTinymce();
             name: '',
             status1: '',
             id: '',
-            names: ''
+            names: '',
+            loading: false
         },
         methods: {
             getEntrepreneur: function () {
@@ -535,9 +537,22 @@ initTinymce();
 
             },
             approveEntrepreneur: function (){
+              this.loading = true
               axios.post(`https://zaka.ticketsoko.com/api/index.php?function=approveEntrepreneurAdmin&keyword=${this.id}`)
               .then((response) => {
-                alert(response.data.message)
+                if (response.data.message == 'Approved') {
+                  alertify.alert("Entrepreneur successfully Approved")
+                  setTimeout(() => {
+                    this.status1 = 'Approved'
+                  }, 1000); 
+                  this.loading = false
+                  return;        
+                }else {
+                  alertify.alertify("Approval failed")
+                  this.loading = false
+                  return;
+                }
+               // alert(response.data.message)
                   console.log(response);
 
               }).catch((err) => {
