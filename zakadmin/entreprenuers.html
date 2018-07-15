@@ -48,6 +48,11 @@
 var URL_BASE = "https://ianjravin.github.io/zaka-dashboard/";
 
 </script>
+<style>
+  [v-cloak]{
+    display: none
+  }
+</style>
 
 </head>
 <!--
@@ -219,8 +224,8 @@ desired effect
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-        <h4>
-           Zaka Admin <i class="fa fa-angle-right margin-separator"></i> Investments (199)
+        <h4 v-cloak>
+           Zaka Admin <i class="fa fa-angle-right margin-separator"></i> Entrepreneurs ({{entrepreneurs.length}})
           </h4>
 
       </section>
@@ -245,7 +250,7 @@ desired effect
                     <tr>
                       <th class="active">ID</th>
                       <th class="active">Full name</th>
-                      <th class="active">Raised</th>
+                      <!-- <th class="active">Raised</th> -->
                       <th class="active">Target</th>
                       <th class="active">Status</th>
                       <th class="active">Date</th>
@@ -254,15 +259,15 @@ desired effect
                     <!-- /.TR -->
 
                     <tr v-for="entrepreneur in entrepreneurs">
-                      <td>{{entrepreneur.id}}</td>
-                      <td>{{entrepreneur.name}}</td>
-                      <td>Ksh50,000</td>
-                      <td>{{entrepreneur.amount}}</td>
+                      <td v-cloak>{{entrepreneur.id}}</td>
+                      <td v-cloak>{{entrepreneur.name}}</td>
+                      <!-- <td>Ksh50,000</td> -->
+                      <td v-cloak>{{entrepreneur.amount}}</td>
                       <td>
-                        <span class="label label-success">{{entrepreneur.status}}</span>
+                        <span class="label label-success" v-cloak>{{entrepreneur.status}}</span>
                       </td>
 
-                      <td>{{entrepreneur.date}}</td>
+                      <td v-cloak>{{entrepreneur.date}}</td>
                       <td> <a v-bind:href="'createpost.html?name=admin&id='+ entrepreneur.id" class="btn btn-success btn-xs padding-btn">
                       		Make post
                       	</a> </td>
