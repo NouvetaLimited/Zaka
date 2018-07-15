@@ -123,7 +123,7 @@
 
 	<div class="jumbotron md index-header jumbotron_set jumbotron-cover">
 		<div class="container wrap-jumbotron position-relative">
-			<h2 class="title-site">Create Account</h2>
+			<h2 class="title-site">Create Post</h2>
 		</div>
 	</div>
 
@@ -136,7 +136,7 @@
 
 
 					<!-- form start -->
-					<form onsubmit="return false">
+					<form>
 
 						<!-- <input type="hidden" name="_token" value="ebZI0rBmJOC7BK2LDRxiXDUdfVRjXRxGVxB63Fd9"> -->
 						<div class="filer-input-dragDrop position-relative" id="draggable">
@@ -146,6 +146,7 @@
 							<div class="previewPhoto">
 
 								<div class="btn btn-danger btn-sm btn-remove-photo" id="removePhoto">
+									<img  v-if="url" :src="url" alt="">
 									<i class="fa fa-trash myicon-right"></i> Delete
 								</div>
 
@@ -159,9 +160,11 @@
 								<div class="filer-input-text">
 									<h3 class="margin-bottom-10">Click to select an image</h3>
 									<h3>The image must be greater than or equal to: 2MB - 800x400 </h3>
+									<img  v-if="url" :src="url" alt="">
 								</div>
 							</div>
 						</div>
+						
 
 						<!-- Start Form Group -->
 						<div class="form-group">
@@ -229,7 +232,7 @@
 
 						<!-- <div class="box-footer"> -->
 							<hr />
-							<button @click="addPost" class="btn btn-block btn-lg  custom-rounded" type="button">Create Account</button>
+							<button @click="addPost" class="btn btn-block btn-lg  custom-rounded btn-primary" type="button"> <i v-if="loading" class="fa fa-spinner fa-spin"></i> Create post</button>
 						<!-- </div> -->
 						<!-- /.box-footer -->
 					</form>
@@ -474,12 +477,16 @@
 		goal: '',
 		image: null,
 		category: '',
-		title:''
+		title:'',
+		url: null,
+		loading: false
            
         },
         methods: {
 			onFileChanged: function (e){
 				this.image = event.target.files[0]
+				this.url = URL.createObjectURL(this.image);
+				console.log(this.url);
 			},
           addPost: function () {
 			   let queryString = decodeURIComponent(window.location.search);
