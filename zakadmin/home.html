@@ -317,7 +317,7 @@ var URL_BASE = "https://ianjravin.github.io/zaka-dashboard/";
                     <div class="box-body no-padding">
                       <ul class="users-list clearfix">
                                                 <li v-for="member in members">
-                          <img :src="member.image" alt="User Image" v-cloak>
+                          <img :src="member.image" alt="User Image" class="img-responsive" v-cloak>
                           <span class="users-list-name" v-cloak>{{member.name}}</span>
 
                           <span class="users-list-date" v-cloak>{{member.date}}</span>
@@ -350,7 +350,7 @@ var URL_BASE = "https://ianjravin.github.io/zaka-dashboard/";
 
                                      <li class="item">
                       <div class="product-img">
-                        <img src="images/admin.png" style="height: auto !important;" />
+                        <img :src="ent.image" style="height: auto !important;" />
                       </div>
                       <div class="product-info">
                         <a href="single.html" target="_blank" class="product-title" v-cloak>{{ent.reason}}
@@ -566,6 +566,7 @@ new Morris.Area({
                             this.allEntrepreneurs.push(el.Entrepreneur);
 
                         });
+                        console.log(this.allEntrepreneurs);
 
                     }).catch((err) => {
                         console.log(err);
