@@ -115,7 +115,7 @@
          </div>
 
      </div>
-		 <a href="index.html" class="navigateto">
+		 <a href="home.html" class="navigateto">
 			 <i class="fa fa-arrow-left myicon-right"></i> <strong>Back to dashboard</strong>
 			 </a>
 
@@ -460,7 +460,7 @@
 
 		initTinymce();
 	</script> -->
-
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 </body>
 <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
 <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
@@ -489,6 +489,7 @@
 				console.log(this.url);
 			},
           addPost: function () {
+			  this.loading =  true
 			   let queryString = decodeURIComponent(window.location.search);
                queryString = queryString.substring(1).split("&");
                let details = queryString[1].split("=");
@@ -507,6 +508,16 @@
 			  
             axios.post('https://zaka.ticketsoko.com/api/index.php?function=post', formData)
 			.then((response) => {
+				if (response.data.message == "Posted Success") {
+					alertify.alert("Posted successfully")
+					setTimeout(() => {
+						window.location.reload(true)
+					}, 2000);
+
+					this.loading = false
+					return;
+					
+				}
 				console.log(response);
 				
 				
