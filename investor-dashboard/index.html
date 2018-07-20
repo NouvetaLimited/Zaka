@@ -43,7 +43,7 @@
 
 
     <style>
-        body {
+        * {
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
         }
@@ -181,7 +181,15 @@ figure.snip1208.hover i {
   transition-delay: 0.2s;
 } */
 .yolo {
-  background-color: #117964;
+  background-color: #885ead;
+}
+.postimage{
+    height: 200px;
+    display: block;
+    max-width: 100%;
+}
+.main-sidebar{
+    background-color: #885ead
 }
 /* Demo purposes only */
 /* body {
@@ -207,7 +215,7 @@ figure.snip1208.hover i {
               <!-- mini logo for sidebar mini 50x50 pixels -->
               <span class="logo-mini"><b><i class="ion ion-ios-bolt"></i></b></span>
               <!-- logo for regular state and mobile devices -->
-              <span class="logo-lg"><b v-cloak><i class="fa fa-desktop"></i> Welcome, {{name}}</b></span>
+              <span class="logo-lg" v-cloak><i class="fa fa-desktop"></i> Welcome, {{name}}</span>
           </a>
           <nav class="navbar navbar-static-top" role="navigation">
               <!-- Sidebar toggle button-->
@@ -223,7 +231,7 @@ figure.snip1208.hover i {
                     </li>
 
                     <li>
-                        <a v-bind:href="'/categories.html'+createUrls" class="navigateto"><i class="fa fa-home"></i><strong> <font color="yellow">Lend</font></strong></a>
+                        <a v-bind:href="'posts.html'+createUrls" class="navigateto"><i class="fa fa-home"></i><font color="">Lend</font></a>
                     </li>
 
 
@@ -234,7 +242,7 @@ figure.snip1208.hover i {
 
 
                       <li>
-                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal"><font color="yellow">Load Account</font></a>
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#DonateModal"><font color="">Load Account</font></a>
                       </li>
 
                       <li>
@@ -265,7 +273,7 @@ figure.snip1208.hover i {
                                       <a v-bind:href="'account.html' + createUrls" class="btn btn-default btn-flat navigateto">Account Settings</a>
                                   </div>
                                   <div class="pull-right">
-                                      <a href="Zaka.co.ke" class="btn btn-default btn-flat">Log out</a>
+                                      <a href="/logme.html" class="btn btn-default btn-flat">Log out</a>
                                   </div>
                               </li>
                           </ul>
@@ -278,68 +286,47 @@ figure.snip1208.hover i {
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
 
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-  
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel">
-                    <!-- <div class="pull-left image">
-                        <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
-                    </div> -->
-                    <!-- <div class="pull-left info">
-                        <p class="text-overflow" id="sidename" v-cloak>{{name}}</p>
-                        <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i><font color="yellow"> <strong>Online</strong></font></a></small>
-                    </div> -->
-                </div>
-                <ul class="sidebar-menu">
-                    <li class="header"><font color="yellow"><strong>Main Menu</strong></font></li>
-                    <li  class="active" >
-                        <a v-bind:href="'index.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-dashboard"></i><span><strong>Dashboard</strong></font></span></a>
-                    </li>
-  
-  
-                    <li >
-                      <a v-bind:href="'offers.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-spinner"></i> <span><strong>Offers</strong></font></span></a>
-                  </li>
-  
-                    <!-- Links -->
-                    <li class="">
-                        <a v-bind:href="'transaction.html' + createUrls" class="navigateto"><font color="white"><i class="	fa fa-file-text-o"></i> <span><strong>Transactions history</strong></font></span></a>
-                    </li><!-- ./Links -->
-  
-  
-  
-  
-                    <li >
-                       
-                    </li>
-  
-                   
-  
-                    <li class="treeview ">
-                      <a href="/settings"><font color="white"><i class="fa fa-cogs"></i> <span><strong>General Settings</strong></font></span> <i class="fa fa-angle-left pull-right"></i></a>
-                      <ul class="treeview-menu">
-                          <li ><a v-bind:href="'account.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i> <strong>Profile settings</strong></font></a></li>
-                          <li ><a v-bind:href="'dormancy.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i> <strong>Account Settings</strong></font></a></li>
-                      </ul>
-                  </li>
-  
-  
-                    <li >
-                       
-                    </li>
-  
-                    <li >
-                       
-                    </li>
-  
-  
-  
-                </ul><!-- /.sidebar-menu -->
-            </section>
-            <!-- /.sidebar -->
-        </aside>
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
 
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <!-- <div class="pull-left image">
+                    <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
+                </div> -->
+                <!-- <div class="pull-left info">
+                    <p class="text-overflow" id="sidename" v-cloak>{{name}}</p>
+                    <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i><font color="yellow"> <strong>Online</strong></font></a></small>
+                </div> -->
+            </div>
+            <ul class="sidebar-menu">
+                <li class="header"><font color="yellow">Main Menu</font></li>
+                <li  class="active" >
+                    <a v-bind:href="'index.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-dashboard"></i><span>Dashboard</font></span></a>
+                </li>
+
+
+                <li >
+                  <a v-bind:href="'offers.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-spinner"></i> <span>Offers made</font></span></a>
+              </li>
+              <li >
+                    <a v-bind:href="'posts.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-handshake-o"></i> <span>Opportunities</font></span></a>
+                </li>
+
+                <!-- Links -->
+                <li class="">
+                    <a v-bind:href="'transaction.html' + createUrls" class="navigateto"><font color="white"><i class="	fa fa-file-text-o"></i> <span>Transactions history</font></span></a>
+                </li><!-- ./Links -->
+                <li class="treeview ">
+                  <a href="/settings"><font color="white"><i class="fa fa-cogs"></i> <span>General Settings</font></span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li ><a v-bind:href="'account.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i>Profile settings</font></a></li>
+                      <li ><a v-bind:href="'dormancy.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i>Account Settings</font></a></li>
+                  </ul>
+              </li>
+            </ul>
+        </section>
+    </aside>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
           <!-- Content Header (Page header) -->
@@ -358,9 +345,22 @@ figure.snip1208.hover i {
 
               <div class="row">
 
+                    <div class="col-lg-4 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-orange">
+                                <div class="inner">
+                                    <h3 id="acctbalance" v-cloak><sup style="font-size: 20px">KES</sup> {{accountBalance}}</h3>
+                                    <p>Account Balance</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-balance-scale"></i>
+                                </div>
+                            </div>
+                        </div>
+
                   <div class="col-lg-4 col-xs-6">
                       <!-- small box -->
-                      <div class="small-box bg-aqua">
+                      <div class="small-box bg-mine">
                           <div class="inner">
                               <h3 id="amouninvested" v-cloak><sup style="font-size: 20px">KES</sup> {{amountInvested}} </h3>
                               <p>Amount Invested</p>
@@ -372,7 +372,7 @@ figure.snip1208.hover i {
                   </div><!-- ./col -->
                   <div class="col-lg-4 col-xs-6">
                       <!-- small box -->
-                      <div class="small-box bg-green">
+                      <div class="small-box bg-orange">
                           <div class="inner">
                               <h3 id="amountrepaid" v-cloak><sup style="font-size: 20px">KES</sup>{{amountPaidBack}}</h3>
                               <p>Amount Repaid</p>
@@ -394,26 +394,52 @@ figure.snip1208.hover i {
                           </div>
                       </div> -->
                   <!-- </div>./col -->
-                  <div class="col-lg-4 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-orange">
-                          <div class="inner">
-                              <h3 id="acctbalance" v-cloak><sup style="font-size: 20px">KES</sup> {{accountBalance}}</h3>
-                              <p>Account Balance</p>
-                          </div>
-                          <div class="icon">
-                              <i class="fa fa-balance-scale"></i>
-                          </div>
-                      </div>
-                  </div><!-- ./col -->
+                 
 
               </div>
+              <div class="row">
+                <section class="col-md-12">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs pull-right ui-sortable-handle">
+                                <li class="pull-left header"><i class="fa fa-cash"></i> Investment opportunities</li>
+                            </ul>
+                            <div class="">
+                                <div class="tab-pane active">
+
+              <div class="" v-for="post in selectedPosts" v-cloak>
+                    <figure class="snip1208">
+                            <img :src="'https:/ticketsoko.com/zaka/api/uploads/'+ post.image" class="postimage" alt="sample66"/>
+                            <figcaption>
+                              <h3>{{post.title}}</h3>
+                              <p>Name: {{post.name}}</p>
+                              <p class="">
+                              About: {{post.description}}
+                              </p>
+                              <p>Category: {{post.category}}</p>
+                              <p>Goal: {{post.amount}}</p>
+                              <p>Location: {{post.location}}</p>
+
+                              <a v-bind:href=" '/single.html' + createUrls + '&postId=' + post.id" class="yolo">Learn More</a>
+                            </figcaption><a href="#"></a>
+                          </figure>
+                         
+              </div>
+                                    <!-- <div class="chart" id="chart1"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+          </div>
+
               <div class="row">
 
                   <section class="col-md-12">
                       <div class="nav-tabs-custom">
                           <ul class="nav nav-tabs pull-right ui-sortable-handle">
-                              <li class="pull-left header"><i class="ion ion-cash"></i> Investments chart</li>
+                              <li class="pull-left header"><i class="fa fa-cash"></i> Investments chart</li>
                           </ul>
                           <div class="tab-content">
                               <div class="tab-pane active">
@@ -425,89 +451,7 @@ figure.snip1208.hover i {
 
               </div><!-- ./row -->
 
-              <div class="row">
-
-                <div>
-                    <h3 class="box-title" >Recent Investments</h3>
-                </div>
-
-
-                  <div class="col-md-12" v-for="post in posts" v-cloak>
-                        <figure class="snip1208">
-                                <img :src="'https:/ticketsoko.com/zaka/api/uploads/'+ post.image" alt="sample66"/>
-                                <div class="date"><span class="day">28</span><span class="month">Oct</span></div><i class="ion-film-marker"></i>
-                                <figcaption>
-                                  <h3>{{post.title}}</h3>
-                                  <p class="desc">
-                                   {{post.description}}
-                                  </p>
-                                  <a v-bind:href=" '/single.html' + createUrls + '&postId=' + post.id" class="yolo">View</a>
-                                </figcaption><a href="#"></a>
-                              </figure>
-                              <!-- <figure class="snip1208 hover">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample9.jpg" alt="sample9"/>
-                                <div class="date"><span class="day">17</span><span class="month">Nov</span></div><i class="ion-headphone"> </i>
-                                <figcaption>
-                                  <h3>An Abstract Post Heading</h3>
-                                  <p>
-                                    Sometimes the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us.
-                                  </p>
-                                  <button>Read More</button>
-                                </figcaption><a href="#"></a>
-                              </figure>
-                              <figure class="snip1208">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample6.jpg" alt="sample6"/>
-                                <div class="date"><span class="day">01</span><span class="month">Dec</span></div><i class="ion-checkmark"> </i>
-                                <figcaption>
-                                  <h3>Down with this sort of thing</h3>
-                                  <p>
-                                    I don't need to compromise my principles, because they don't have the slightest bearing on what happens to me anyway.
-                                  </p>
-                                  <button>Read More</button>
-                                </figcaption><a href="#"></a>
-                              </figure> -->
-                      <!-- <div class="box box-primary">
-                          <div class="box-header with-border">
-                              <h3 class="box-title">Investments</h3>
-                              <div class="box-tools pull-right">
-                              </div>
-                          </div>
-
-                          <div class="box-body" >
-
-                                <ul class="products-list product-list-in-box">
-  
-  
-                                    <li class="item" v-for="post in posts" v-cloak>
-                                        <div class="product-img">
-                                            <img :src="'https:/ticketsoko.com/zaka/api/uploads/'+ post.image" style="height: auto !important;" />
-                                        </div>
-                                        <div class="product-info">
-                                            <a v-bind:href="'/single.html'+ createUrls + '&postid='+ post.id" target="_blank" class="product-title navigateto"> {{post.title}}
-                                               
-                                            </a>
-                                            <span class="product-description">
-                                                    {{post.date}}
-                                                    </span>
-                                        </div>
-                                    </li>
-  
-                                </ul>
-                            </div>
-
-                          <div class="box-footer text-center">
-                              <a v-bind:href="'/categories.html' + createUrls" class="uppercase navigateto">View all</a>
-                          </div>
-
-
-                      </div> -->
-                  </div>
-
-                  <!-- Here -->
-
-
-              </div>
-
+              
           </section>
       </div>
      <div>
@@ -608,7 +552,8 @@ figure.snip1208.hover i {
             posts: [],
             charts: [],
             data: [],
-            registration: 1000
+            registration: 1000,
+            selectedPosts:[]
         },
         methods:{
  payme:  function() {
@@ -769,12 +714,16 @@ axios.post(`https://ticketsoko.com/zaka/api/index.php?function=investorData&keyw
 
                             if (el.CampaignPost) {
                                 el.CampaignPost.forEach(campaign => {
-                                    console.log("campaign", campaign)
+                                    //console.log("campaign", campaign)
                                     this.posts.push(campaign.CampaignPost)
-                                    console.log("POSTS", this.posts)
-                                    //console.log(this.posts);
+                                    //this.selectedPosts = this.posts.splice(5)
+                                    //console.log("SELPOSTS", this.selectedPosts)
+                                    console.log("SELPOSTS", this.posts.length)
 
                                 });
+                                 this.selectedPosts = this.posts
+                                    console.log("SELPOSTS", this.selectedPosts)
+                                    console.log("SELPOSTS", this.posts.length)
 
                             } 
                             else {

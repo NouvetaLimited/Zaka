@@ -49,9 +49,12 @@
 
 
       <style>
-          body {
+          * {
               font-family: 'Montserrat', sans-serif;
               font-size: 15px;
+          }
+          [v-cloak]{
+            display: none;
           }
           </style>
 
@@ -64,7 +67,7 @@
               <!-- mini logo for sidebar mini 50x50 pixels -->
               <span class="logo-mini"><b><i class="ion ion-ios-bolt"></i></b></span>
               <!-- logo for regular state and mobile devices -->
-                            <span class="logo-lg"><b><i class="fa fa-desktop"></i> Investor</b></span>
+                            <span class="logo-lg"><i class="fa fa-desktop"></i> Investor</span>
           </a>
           <nav class="navbar navbar-static-top" role="navigation">
               <!-- Sidebar toggle button-->
@@ -80,7 +83,7 @@
                     </li>
 
                     <li>
-                         <a href="categories.html" class="navigateto"><i class="fa fa-home"></i><strong> <font color="yellow">Lend</font></strong></a>
+                         <a v-bind:href="'posts.html' + createUrls" class="navigateto"><i class="fa fa-home"></i> <font color="">Lend</font></a>
                     </li>
 
 
@@ -105,21 +108,21 @@
                               <!-- The user image in the navbar-->
                               <img :src="investorProfilePicture" class="user-image" alt="User Image" />
                               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                              <span class="hidden-xs">{{name}}</span>
+                              <span class="hidden-xs" v-cloak>{{name}}</span>
                           </a>
                           <ul class="dropdown-menu">
                               <!-- The user image in the menu -->
                               <li class="user-header">
-                                  <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
+                                  <img :src="investorProfilePicture" class="img-circle" alt="User Image" v-cloak />
                                   <p>
-                                      <small>{{name}}</small>
+                                      <small v-cloak>{{name}}</small>
                                   </p>
                               </li>
 
                               <!-- Menu Footer-->
                               <li class="user-footer">
                                   <div class="pull-left">
-                                      <a href="account.html" class="btn btn-default btn-flat navigateto">Account Settings</a>
+                                      <a v-bind:href="'account.html' + createUrls " class="btn btn-default btn-flat navigateto">Account Settings</a>
                                   </div>
                                   <div class="pull-right">
                                       <a href="/index.html" class="btn btn-default btn-flat">Log out</a>
@@ -135,72 +138,52 @@
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
 
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-  
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel">
-                    <!-- <div class="pull-left image">
-                        <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
-                    </div>
-                    <div class="pull-left info">
-                        <p class="text-overflow" id="sidename">{{name}}</p>
-                        <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i><font color="yellow"> <strong>Online</strong></font></a></small>
-                    </div> -->
-                </div>
-                <ul class="sidebar-menu">
-                    <li class="header"><font color="yellow"><strong>Main Menu</strong></font></li>
-                    <li  class="active" >
-                        <a href="index.html" class="navigateto"><font color="white"><i class="fa fa-dashboard"></i><span><strong>Dashboard</strong></font></span></a>
-                    </li>
-  
-  
-                    <li >
-                      <a href="offers.html" class="navigateto"><font color="white"><i class="fa fa-spinner"></i> <span><strong>Offers</strong></font></span></a>
-                  </li>
-  
-                    <!-- Links -->
-                    <li class="">
-                        <a href="transaction.html" class="navigateto"><font color="white"><i class="	fa fa-file-text-o"></i> <span><strong>Transactions history</strong></font></span></a>
-                    </li><!-- ./Links -->
-  
-  
-  
-  
-                    <li >
-                       
-                    </li>
-  
-                   
-  
-                    <li class="treeview ">
-                      <a href="/settings"><font color="white"><i class="fa fa-cogs"></i> <span><strong>General Settings</strong></font></span> <i class="fa fa-angle-left pull-right"></i></a>
-                      <ul class="treeview-menu">
-                          <li ><a href="account.html" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i> <strong>Profile settings</strong></font></a></li>
-                          <li ><a href="dormancy.html" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i> <strong>Account Settings</strong></font></a></li>
-                      </ul>
-                  </li>
-  
-  
-                    <li >
-                       
-                    </li>
-  
-                    <li >
-                       
-                    </li>
-  
-  
-  
-                </ul><!-- /.sidebar-menu -->
-            </section>
-            <!-- /.sidebar -->
-        </aside>
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <!-- <div class="pull-left image">
+                    <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
+                </div> -->
+                <!-- <div class="pull-left info">
+                    <p class="text-overflow" id="sidename" v-cloak>{{name}}</p>
+                    <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i><font color="yellow"> <strong>Online</strong></font></a></small>
+                </div> -->
+            </div>
+            <ul class="sidebar-menu">
+                <li class="header"><font color="yellow">Main Menu</font></li>
+                <li  class="active" >
+                    <a v-bind:href="'index.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-dashboard"></i><span>Dashboard</font></span></a>
+                </li>
+
+
+                <li >
+                  <a v-bind:href="'offers.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-spinner"></i> <span>Offers made</font></span></a>
+              </li>
+              <li >
+                    <a v-bind:href="'posts.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-handshake-o"></i> <span>Opportunities</font></span></a>
+                </li>
+
+                <!-- Links -->
+                <li class="">
+                    <a v-bind:href="'transaction.html' + createUrls" class="navigateto"><font color="white"><i class="	fa fa-file-text-o"></i> <span>Transactions history</font></span></a>
+                </li><!-- ./Links -->
+                <li class="treeview ">
+                  <a href="/settings"><font color="white"><i class="fa fa-cogs"></i> <span>General Settings</font></span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li ><a v-bind:href="'account.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i>Profile settings</font></a></li>
+                      <li ><a v-bind:href="'dormancy.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i>Account Settings</font></a></li>
+                  </ul>
+              </li>
+            </ul>
+        </section>
+    </aside>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h4>
+          <h4 v-cloak>
            Zaka Admin <i class="fa fa-angle-right margin-separator"></i> {{transactionNumber}}
           </h4>
 
@@ -216,19 +199,19 @@
                   <h3 class="box-title">
                   		Transactions
                   	</h3>
-                </div><!-- /.box-header -->
+                </div>
 
                 <div class="box-body table-responsive no-padding">
-                  <table class="table table-hover">
+                  <table class="table table-hover" v-cloak>
                <tbody>
 
                	                   <tr>
-                      <th class="active">ID</th>
+                      <th class="active" >ID</th>
                       <th class="active">Amout</th>
                       <th class="active">Transction Code</th>
                       <th class="active">Date</th>
                       <th class="active">Transction Type</th>
-                    </tr><!-- /.TR -->
+                    </tr>
 
 
                     <tr v-for= "transaction in transactions">
@@ -237,16 +220,7 @@
     <td>{{transaction.transactionCode}}</td>
     <td>{{transaction.date}}</td>
     <td>{{transaction.TransactionType}}</td>
-    <!-- <td>Ksh55,000</td> -->
-    <!-- <td>
-       <span class="label label-success">Paid</span>
-     </td>
-    <td>08 Dec, 17</td>
-
-    <td> <a href="viewinve.html" class="btn btn-success btn-xs padding-btn">
-        View
-      </a> </td> -->
-  </tr><!-- /.TR -->
+  </tr>
 
 
 
@@ -260,31 +234,22 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
                            <ul class="pagination">
-    <!-- Previous Page Link -->
             <li class="disabled"><span>&laquo;</span></li>
 
-    <!-- Pagination Elements -->
-            <!-- "Three Dots" Separator -->
-
-        <!-- Array Of Links -->
-                                                        <li class="active"><span>1</span></li>
-                                                                <li><a href="page=2">2</a></li>
-
-    <!-- Next Page Link -->
+    <li class="active"><span>1</span></li>
+         <li><a href="page=2">2</a></li>
             <li><a href="page=2" rel="next">&raquo;</a></li>
     </ul>
 
                          </div>
           </div>
 
-          <!-- Your Page Content Here -->
-
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+        </section>
+      </div>
 
      
       <footer class="main-footer">
-        <!-- Default to the left -->
+        
        &copy; <strong>Zaka | Investment Platform</strong> - 2017      </footer>
 
     </div><!-- ./wrapper -->
@@ -373,20 +338,27 @@
      details = queryString[2].split("="); 
      this.id = decodeURI(details[1]);
       },
-     createUrls: function () {
-        var links = [...document.getElementsByClassName('navigateto')]
-        links.forEach(element => {
-            element.href += `?objects=${this.account}&names=${this.name}&id=${this.id}`
-            console.log(element.href)            
-        });
-      },
+    //  createUrls: function () {
+    //     var links = [...document.getElementsByClassName('navigateto')]
+    //     links.forEach(element => {
+    //         element.href += `?objects=${this.account}&names=${this.name}&id=${this.id}`
+    //         console.log(element.href)            
+    //     });
+    //   },
      
         },
+
+        computed: {
+            createUrls (){
+                return `?objects=${this.account}&names=${this.name}&id=${this.id}`; 
+            }
+        },
+
         beforeMount: function (){
            this.getInvestorDetail()
         },
         mounted:function (){
-        this.createUrls()
+        this.createUrls
         },
         created: function (){
             this.getTransactions()

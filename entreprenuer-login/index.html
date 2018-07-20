@@ -49,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     <style>
-        body {
+        * {
             font-family: 'Montserrat', sans-serif;
             font-size: 15px;
         }
@@ -63,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px 0px;
             box-sizing: border-box;
             color: rgb(107, 87, 75);
-            height: 526px;
+            height: 555px;
             left: 0px;
             position: relative;
             right: 0px;
@@ -595,7 +595,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             text-decoration: none solid rgb(86, 74, 65);
             text-size-adjust: 100%;
             top: 0px;
-            width: 273px;
+            width: 100%;
             column-rule-color: rgb(86, 74, 65);
             perspective-origin: 136.5px 18px;
             transform-origin: 136.5px 18px;
@@ -1156,7 +1156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             list-style: none outside none;
             outline: rgb(86, 74, 65) none 0px;
         }
-
+        
         /*#INPUT_1:before*/
     </style>
     <script type="text/javascript">
@@ -1230,7 +1230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <a href="account.html" class="btn btn-default btn-flat navigateto">Account Settings</a>
                                             </div>
                                             <div class="pull-right">
-                                                <a href="login.html" class="btn btn-default btn-flat">Log out</a>
+                                                <a href="/login.html" class="btn btn-default btn-flat">Log out</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -1350,7 +1350,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 <div class="col-lg-3 col-xs-6">
                                     <!-- small box -->
-                                    <div class="small-box bg-aqua">
+                                    <div class="small-box bg-green">
                                         <div class="inner">
                                             <h3 v-cloak>{{investors}}</h3>
                                             <p>Investors</p>
@@ -1364,7 +1364,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 <div class="col-lg-3 col-xs-6">
                                     <!-- small box -->
-                                    <div class="small-box bg-green">
+                                    <div class="small-box bg-red">
                                         <div class="inner">
                                             <h3 v-cloak>
                                                 <sup style="font-size: 20px">KES</sup>{{amountRaised}}</h3>
@@ -1749,10 +1749,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             },
             openCounterModal: function (offer) {
                 var formatter = new Intl.NumberFormat()
-                this.offerComments = offer.comments
+                this.offerComments = offer.comment
                 this.offerAmount = formatter.format(offer.Amount)
                 this.offerRate = offer.intrestrate
-                this.offerId = offer.postid
+                this.offerId = offer.offerid
                 this.offerDate = offer.Date
                 this.offerStatus = offer.status
                 //this.offerId = offer.id
@@ -1793,6 +1793,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
              }, (ev) => {
                 this.counter = false
                 this.loading = false
+                $("#myModal").modal('show')
                 ev.preventDefault();
 
             });
@@ -1835,6 +1836,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
              }, (ev) => {
                 this.counter = false
                 this.loading = false
+                $("#myModal").modal('show')
                 ev.preventDefault();
             });
                

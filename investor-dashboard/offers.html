@@ -70,7 +70,7 @@
 
 
  <style>
-     body {
+     * {
          font-family: 'Montserrat', sans-serif;
          font-size: 15px;
      }
@@ -90,9 +90,9 @@
       <header class="main-header">
           <a href="" class="logo">
               <!-- mini logo for sidebar mini 50x50 pixels -->
-              <span class="logo-mini"><b><i class="fa fa-desktop"></i></b></span>
+              <span class="logo-mini"><i class="fa fa-desktop"></i></span>
               <!-- logo for regular state and mobile devices -->
-                            <span class="logo-lg"><b><i class="fa fa-desktop"></i> Investor Dashboard</b></span>
+                            <span class="logo-lg" v-cloak><i class="fa fa-desktop"></i> Investor Dashboard</span>
           </a>
           <nav class="navbar navbar-static-top" role="navigation">
               <!-- Sidebar toggle button-->
@@ -107,24 +107,11 @@
                     </li>
 
                     <li>
-                        <a href="/categories.html" class="navigateto"><i class="fa fa-home"></i><strong> Lend</strong></a>
+                        <a v-bind:href="'posts.html' + createUrls" class="navigateto"><i class="fa fa-home"></i> Lend</a>
                     </li>
 
 
-                      <li>
-                        
-                      </li>
-
-
-<!-- 
-                      <li>
-                          <a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#DonateModal">Load Account</a>
-                      </li> -->
-
-                      <li>
-                          <!-- <a href="/categories.html" class="navigateto"><i class="fa fa-user"></i><strong>Find Entrepreneurs</strong></a> -->
-                      </li>
-
+                     
                       <!-- User Account Menu -->
                       <li class="dropdown user user-menu">
                           <!-- Menu Toggle Button -->
@@ -162,67 +149,47 @@
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
 
-          <!-- sidebar: style can be found in sidebar.less -->
-          <section class="sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
 
-              <!-- Sidebar user panel (optional) -->
-              <div class="user-panel">
-                  <!-- <div class="pull-left image">
-                      <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
-                  </div>
-                  <div class="pull-left info">
-                      <p class="text-overflow" id="sidename">{{name}}</p>
-                      <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i><font color="yellow"> <strong>Online</strong></font></a></small>
-                  </div> -->
-              </div>
-              <ul class="sidebar-menu">
-                  <li class="header"><font color="yellow"><strong>Main Menu</strong></font></li>
-                  <li  class="active" >
-                      <a href="index.html" class="navigateto"><font color="white"><i class="fa fa-dashboard"></i><span><strong>Dashboard</strong></font></span></a>
-                  </li>
-
-
-                  <li >
-                    <a href="offers.html" class="navigateto"><font color="white"><i class="fa fa-spinner"></i> <span><strong>Offers</strong></font></span></a>
-                </li>
-
-                  <!-- Links -->
-                  <li class="">
-                      <a href="transaction.html" class="navigateto"><font color="white"><i class="	fa fa-file-text-o"></i> <span><strong>Transactions history</strong></font></span></a>
-                  </li><!-- ./Links -->
-
-
-
-
-                  <li >
-                     
-                  </li>
-
-                 
-
-                  <li class="treeview ">
-                    <a href="/settings"><font color="white"><i class="fa fa-cogs"></i> <span><strong>General Settings</strong></font></span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li ><a href="account.html" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i> <strong>Profile settings</strong></font></a></li>
-                        <li ><a href="dormancy.html" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i> <strong>Account Settings</strong></font></a></li>
-                    </ul>
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <!-- <div class="pull-left image">
+                    <img :src="investorProfilePicture" class="img-circle" alt="User Image" />
+                </div> -->
+                <!-- <div class="pull-left info">
+                    <p class="text-overflow" id="sidename" v-cloak>{{name}}</p>
+                    <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i><font color="yellow"> <strong>Online</strong></font></a></small>
+                </div> -->
+            </div>
+            <ul class="sidebar-menu">
+                <li class="header"><font color="yellow">Main Menu</font></li>
+                <li  class="active" >
+                    <a v-bind:href="'index.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-dashboard"></i><span>Dashboard</font></span></a>
                 </li>
 
 
-                  <li >
-                     
-                  </li>
+                <li >
+                  <a v-bind:href="'offers.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-spinner"></i> <span>Offers made</font></span></a>
+              </li>
+              <li >
+                    <a v-bind:href="'posts.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-handshake-o"></i> <span>Opportunities</font></span></a>
+                </li>
 
-                  <li >
-                     
-                  </li>
-
-
-
-              </ul><!-- /.sidebar-menu -->
-          </section>
-          <!-- /.sidebar -->
-      </aside>
+                <!-- Links -->
+                <li class="">
+                    <a v-bind:href="'transaction.html' + createUrls" class="navigateto"><font color="white"><i class="	fa fa-file-text-o"></i> <span>Transactions history</font></span></a>
+                </li><!-- ./Links -->
+                <li class="treeview ">
+                  <a href="/settings"><font color="white"><i class="fa fa-cogs"></i> <span>General Settings</font></span> <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li ><a v-bind:href="'account.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i>Profile settings</font></a></li>
+                      <li ><a v-bind:href="'dormancy.html' + createUrls" class="navigateto"><font color="white"><i class="fa fa-circle-o"></i>Account Settings</font></a></li>
+                  </ul>
+              </li>
+            </ul>
+        </section>
+    </aside>
     <div class="content-wrapper">
         <section class="content-header">
             <!-- <h1>
@@ -271,28 +238,18 @@
                                             <table class="table table-data2">
                                                 <thead>
                                                     <tr>
-                                                        <th>
-                                                            <label class="au-checkbox">
-                                                                <input type="checkbox">
-                                                                <span class="au-checkmark"></span>
-                                                            </label>
-                                                        </th>
+                                                        
                                                         <th> Post ID</th>
                                                         <th>date</th>
                                                         <th>Amount</th>
                                                         <th>Percentage</th>
                                                         <th>status</th>
-                                                        <th></th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody v-cloak>
                                                     <tr class="tr-shadow" v-for="(offer, index) in offers" :key="index" v-if="offers.length > 0">
-                                                        <td>
-                                                            <label class="au-checkbox">
-                                                                <input type="checkbox">
-                                                                <span class="au-checkmark"></span>
-                                                            </label>
-                                                        </td>
+                                                       
                                                         <td >{{offer.post_id}}</td>
                                                         <td >{{offer.date}}</td>
                                                         <td >KES {{offer.amount}}</td>
@@ -376,138 +333,7 @@
 <script src="plugins/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script src="bootstrap/js/functions.js" type="text/javascript"></script>
 <script src="js/raphael-min.js" type="text/javascript"></script>
-<script src="js/morris.min.js" type="text/javascript"></script>
-<script type="text/javascript">
 
-    var IndexToMonth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    //** Charts
-    new Morris.Area({
-// ID of the element in which to draw the chart.
-        element: 'chart1',
-// Chart data records -- each entry in this array corresponds to a point on
-// the chart.
-        data: [
-
-            {days: '2017-12-18', value: 0},
-
-
-            {days: '2017-12-17', value: 0},
-
-
-            {days: '2017-12-16', value: 0},
-
-
-            {days: '2017-12-15', value: 0},
-
-
-            {days: '2017-12-14', value: 0},
-
-
-            {days: '2017-12-13', value: 0},
-
-
-            {days: '2017-12-12', value: 0},
-
-
-            {days: '2017-12-11', value: 0},
-
-
-            {days: '2017-12-10', value: 0},
-
-
-            {days: '2017-12-09', value: 0},
-
-
-            {days: '2017-12-08', value: 3},
-
-
-            {days: '2017-12-07', value: 0},
-
-
-            {days: '2017-12-06', value: 0},
-
-
-            {days: '2017-12-05', value: 0},
-
-
-            {days: '2017-12-04', value: 0},
-
-
-            {days: '2017-12-03', value: 0},
-
-
-            {days: '2017-12-02', value: 0},
-
-
-            {days: '2017-12-01', value: 0},
-
-
-            {days: '2017-11-30', value: 0},
-
-
-            {days: '2017-11-29', value: 0},
-
-
-            {days: '2017-11-28', value: 0},
-
-
-            {days: '2017-11-27', value: 0},
-
-
-            {days: '2017-11-26', value: 0},
-
-
-            {days: '2017-11-25', value: 0},
-
-
-            {days: '2017-11-24', value: 0},
-
-
-            {days: '2017-11-23', value: 1},
-
-
-            {days: '2017-11-22', value: 0},
-
-
-            {days: '2017-11-21', value: 0},
-
-
-            {days: '2017-11-20', value: 1},
-
-
-            {days: '2017-11-19', value: 0},
-
-        ],
-// The name of the data record attribute that contains x-values.
-        xkey: 'days',
-// A list of names of data record attributes that contain y-values.
-        ykeys: ['value'],
-// Labels for the ykeys -- will be displayed when you hover over the
-// chart.
-        labels: ['Donations'],
-        pointFillColors: ['#FF5500'],
-        lineColors: ['#DDD'],
-        hideHover: 'auto',
-        gridIntegers: true,
-        resize: true,
-        xLabelFormat: function (x) {
-            var month = IndexToMonth[x.getMonth()];
-            var year = x.getFullYear();
-            var day = x.getDate();
-            return day + ' ' + month;
-            //return  year + ' '+ day +' ' + month;
-        },
-        dateFormat: function (x) {
-            var month = IndexToMonth[new Date(x).getMonth()];
-            var year = new Date(x).getFullYear();
-            var day = new Date(x).getDate();
-            return day + ' ' + month;
-            //return year + ' '+ day +' ' + month;
-        },
-
-    });// <------------ MORRIS
-</script>
 <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>  
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -671,23 +497,32 @@
      details = queryString[2].split("="); 
      this.id = decodeURI(details[1]);
      console.log(this.id);
-      },
-     createUrls: function () {
-        var links = [...document.getElementsByClassName('navigateto')]
-        links.forEach(element => {
-            element.href += `?objects=${this.account}&names=${this.name}&id=${this.id}`
-            console.log(element.href)            
-        });
-      },
+      }
+    //  createUrls: function () {
+    //     var links = [...document.getElementsByClassName('navigateto')]
+    //     links.forEach(element => {
+    //         element.href += `?objects=${this.account}&names=${this.name}&id=${this.id}`
+    //         console.log(element.href)            
+    //     });
+    //   },
      
         },
+        computed: {
+            createUrls: function () {
+                // var links = [...document.getElementsByClassName('navigateto')]
+                // links.forEach(element => {
+                //     element.href += `?objects=${this.account}&names=${this.name}&id=${this.id}`
+                //     //console.log(element.href)  
+                    return `?objects=${this.account}&names=${this.name}&id=${this.id}`;      
+            }
+      },
         beforeMount: function(){
             this.getInvestorDetail()
             this.getInvestorOffers()
             this.getInvestorInformation()
         },
         mounted: function(){
-            this.createUrls()
+            this.createUrls
         }
     })
 </script>

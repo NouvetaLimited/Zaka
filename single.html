@@ -47,6 +47,11 @@
     .stats{
         margin-bottom: 30px;
     }
+    .postimage{
+        height: 400px;
+        display: block;
+        max-width: 100%;
+    }
     </style>
 <script src="js/modernizr.js"></script><!-- Modernizr -->
 </head>
@@ -56,7 +61,7 @@
     today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better
     experience this site.</p>
 <![endif]-->
-<div id="app">
+<div id="app" v-cloak>
 <div class="body" >
     <!-- Site Header Wrapper -->
     <div class="site-header-wrapper">
@@ -86,8 +91,8 @@
                             <li><a href="contact.html">Contact us</a></li>
                         </ul>
                     </li>
-                    <li><a v-bind:href="'categories.html' + createUrls "> Lend</a></li>
-                    <li><a v-bind:href="'investor-dashboard/index.html' + createUrls"><i class="fa fa-user "></i> My account</a></li>
+                    <li><a v-bind:href="'investor-dashboard/posts.html' + createUrls "> Lend</a></li>
+                    <li><a v-bind:href="'investor-dashboard/index.html' + createUrls"><i class="fa fa-user "></i>Dashboard</a></li>
                     <li><a href="logme.html"><i class="fa fa-user "></i> log out</a></li>
                 </ul>
             </div>
@@ -104,18 +109,18 @@
         </div>
     </div>
     <!-- Main Content -->
-    <div id="main-container">
+    <div id="main-container" v-cloak>
         <div class="content">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 content-block" v-cloak>
                         <!-- <h3>{{postTitle}}</h3> -->
                         <div class="post-media">
-                            <img :src="'https://ticketsoko.com/zaka/api/uploads/' + postImage" alt="">
+                            <img :src="'https://ticketsoko.com/zaka/api/uploads/' + postImage" class="postimage">
                         </div>
                         <span class="label label-default">Investment progress</span>
                         <div class="progress">
-                            <div style="width: 88%;" class="progress-bar progress-bar-primary"
+                            <div v-bind:style="{ width: amountPercentage + '%' }" class="progress-bar progress-bar-primary"
                                  :data-appear-progress-animation="amountPercentage + '%'" data-appear-animation-delay="100"><span
                                     class="progress-bar-tooltip" v-cloak>{{amountPercentage}} %</span></div>
                         </div>
@@ -137,25 +142,6 @@
                                    data-target="#myModal">Invest Now</a>
                             </div>
                         </div>
-                        <!-- <p>A group of women going by the name "creativity for peace women chama" have perfected the art
-                            of traditional art in weaving, pottery, bead work,knitting & sculpting. They supply their
-                            art work all over the world & have recently gotten a deal to supply one of the world's
-                            biggest retail stores in the world & are looking for funding for inventory to be able to
-                            meet the said orders.This is a short term loan as once they have supplied their artwork they
-                            will be paid & return the loan. </p>
-                        <img src="images/nepal.jpg" alt="" class="align-left">
-                        <p>A group of women going by the name "creativity for peace women chama" have perfected the art
-                            of traditional art in weaving, pottery, bead work,knitting & sculpting. They supply their
-                            art work all over the world & have recently gotten a deal to supply one of the world's
-                            biggest retail stores in the world & are looking for funding for inventory to be able to
-                            meet the said orders.This is a short term loan as once they have supplied their artwork they
-                            will be paid & return the loan.</p>
-                        <p>A group of women going by the name "creativity for peace women chama" have perfected the art
-                            of traditional art in weaving, pottery, bead work,knitting & sculpting. They supply their
-                            art work all over the world & have recently gotten a deal to supply one of the world's
-                            biggest retail stores in the world & are looking for funding for inventory to be able to
-                            meet the said orders.This is a short term loan as once they have supplied their artwork they
-                            will be paid & return the loan.</p> -->
                     </div>
 
                     <!-- Sidebar -->
@@ -178,66 +164,7 @@
             </div>
         </div>
     </div>
-    <!-- Site Footer -->
-    <!-- <div class="site-footer parallax parallax3" style="background-image:url('images/parallax3.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="widget footer_widget">
-                        <h4 class="widgettitle">About Zaka</h4>
-                        <p><img src="images/logo.png" alt="logo"/></p>
-                        <p>Zaka International is an SME investment company that aims to bridge short-term financing gap
-                            of small and medium sized enterprises in Kenya so that they attain scale to large businesses
-                            further contributing to wealth generation and employment creation in Kenya and beyond.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="widget footer_widget widget_links">
-                        <h4 class="widgettitle">Links Might Help You</h4>
-                        <ul>
-                            <li><a href="opp.html">Opportunities </a></li>
-                            <li><a href="about.html">Our mission</a></li>
-                            <li><a href="faq.html">Have Questions?</a></li>
-                            <li><a href="contact.html">Talk to us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="widget footer_widget">
-                        <h4 class="widgettitle">STAY CONNECTED</h4>
-                        <p>Contact us at :
-                        <h4 class="widgettitle" style="text-transform:lowercase;">info@zaka.co.ke</h4>
-                        <ul class="social-icons-rounded social-icons-colored">
-                            <a href="#" class="fa fa-facebook"></a>
-                            <a href="#" class="fa fa-twitter"></a>
-                            <a href="#" class="fa fa-linkedin"></a>
-                            <a href="#" class="fa fa-google-plus"></a>
-                        </ul>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <div class="site-footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="copyrights-col-left">
-                        <p>&copy; 2018 <b>Zaka</b>. All Rights Reserved</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6"></div>
-                <div class="copyrights-col-right">
-                    <ul class="footer-menu">
-                        <li><a href="#">Register with us</a></li>
-                        <li><a href="#">Login now</a></li>
-                        <li><a href="terms.html">Terms &amp; conditions</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </div>
 
@@ -247,8 +174,8 @@
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                        </button>
+                        <a type="" class=" pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </a>
                         <div class="">
                             <div class="form-group">
                                 <label for="text">Amount</label>
@@ -260,13 +187,33 @@
                               </div>
                               <div class="form-group">
                                 <label for="number">Comment</label>
-                                <input type="text" class="form-control comment-box inp" id="amnt"  v-model="comment">
+                                <textarea name="" id="" cols="30" rows="10" class="form-control" v-model="comment"></textarea>
+                                <!-- <input type="text" class="form-control  inp"  v-model="comment"> -->
                               </div>
                         </div>
                     </div>
                     <div class="modal-footer text-align-center">
                         <button type="button" class="btn btn-large btn-block btn-primary inp" @click="makeOffer()"><i v-if="loading" class="fa fa-spinner fa-spin"></i>Make Offer</button>
                         <div class="spacer-20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="copyrights-col-left">
+                            <p>&copy; 2018 <b>Zaka</b>. All Rights Reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6"></div>
+                    <div class="copyrights-col-right">
+                        <ul class="footer-menu">
+                            <li><a href="#">Register with us</a></li>
+                            <li><a href="#">Login now</a></li>
+                            <li><a href="terms.html">Terms &amp; conditions</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -424,6 +371,7 @@
                 formData.append('amount', this.amount)
                 formData.append('interest', this.interest)
                 formData.append('comments', this.comment)
+                // console.log(this.comment);
                
                 setTimeout(() => {
                axios.post('https://ticketsoko.com/zaka/api/index.php?function=createOffer', formData)
@@ -455,10 +403,11 @@
         },
         beforeMount: function (){
            this.getInvestorDetail()
+           this.getPost()
         },
         mounted:function (){
         this.createUrls
-        this.getPost()
+        
         }
 
     })

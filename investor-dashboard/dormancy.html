@@ -59,7 +59,8 @@
 		var ReadLess = "View less...";
 	</script>
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Raleway:100,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -75,6 +76,18 @@
 			"csrfToken": "OaqydaeZcSApGX98npM6M1hoT0ewfhR5KmnIJ3VX"
 		}
 	</script>
+	
+	<style>
+	 * {
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+	}
+	.inp{
+		border-radius: 15px;
+	}
+	
+
+	</style>
 
 </head>
 
@@ -201,6 +214,7 @@
 
 
 			<!-- *********** AVATAR ************* -->
+		
 
 			<form action="#" method="POST" id="formAvatar" accept-charset="UTF-8" enctype="multipart/form-data">
 				<input type="hidden" name="_token" value="OaqydaeZcSApGX98npM6M1hoT0ewfhR5KmnIJ3VX">
@@ -219,9 +233,41 @@
 
 			</form>
 			<!-- *********** AVATAR ************* -->
+			
+			<!-- <ul>
+				<li>Auto Lending<br><input id="toggle-on" name="toggle" type="radio"><labell for="toggle-on">On</labell
+					><input id="toggle-off" name="toggle" type="radio"
+					><labell for="toggle-off">Off</labell></li>
+					
+					<li>Auto deposit (20,000KES monthly)<br><input id="toggle-on" name="toggle" type="radio"><labell for="toggle-on">On</labell
+					><input id="toggle-off" name="toggle" type="radio"
+					><labell for="toggle-off">Off</labell></li>
+					
+					<li>Repayment notification(E-mail & SMS)<br><input id="toggle-on" name="toggle" type="radio"><labell for="toggle-on">On</labell
+					><input id="toggle-off" name="toggle" type="radio"
+					><labell for="toggle-off">Off</labell></li>
+					
+			</ul> -->
+<form action="">
+	<div>
+		<p><strong>Auto lending</strong></p>
+		<input type="checkbox" name="vehicle"  v-model="autolending"> {{autolending}}
+		
+	  </div>
+	  
+	  <div>
+		  <p><strong>Auto deposit (20,000KES monthly)</strong></p>
+	  <input type="checkbox" name="vehicle"  v-model="autodeposit"> {{autodeposit}}
+	 
+	  </div>
+	  
+	  <div>
+		  <p><strong>Repayment notification(E-mail & SMS)</strong></p>
+	  <input type="checkbox" name="vehicle" v-model="notification" > {{notification}}
+	 
+	  </div>
 
-
-
+</form>
 			<!-- ***** FORM ***** -->
 			<form action="#" method="post" name="form">
 
@@ -255,7 +301,7 @@
 
 
 
-				<button type="submit" id="buttonSubmit" class="btn btn-block btn-lg btn-main custom-rounded">Save changes</button>
+				<button type="submit" id="buttonSubmit" class="btn btn-block btn-lg btn-main custom-rounded inp">Save changes</button>
 
 			</form>
 			<!-- ***** END FORM ***** -->
@@ -267,7 +313,7 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li class="margin-bottom-5">
 					<!-- **** list-group-item **** -->
-					<a href="account.html" class="list-group-item active navigateto ">
+					<a href="dormancy.html" class="list-group-item active navigateto ">
 		  	<i class="fa fa-pencil myicon-right"></i> Account Settings
 		  	</a>
 					<!-- **** ./ list-group-item **** -->
@@ -275,7 +321,7 @@
 
 				<li class="margin-bottom-5">
 					<!-- **** list-group-item **** -->
-					<a href="password.html" class="list-group-item navigateto">
+					<a href="account.html" class="list-group-item navigateto">
 		  	<i class="fa fa-user myicon-right"></i> Profile Settings
 		  	</a>
 					<!-- **** ./ list-group-item **** -->
@@ -295,17 +341,6 @@
 
 
 
-				<li>Auto Lending<br><input id="toggle-on" name="toggle" type="radio"><labell for="toggle-on">On</labell
-><input id="toggle-off" name="toggle" type="radio"
-><labell for="toggle-off">Off</labell></li>
-
-<li>Auto deposit (20,000KES monthly)<br><input id="toggle-on" name="toggle" type="radio"><labell for="toggle-on">On</labell
-><input id="toggle-off" name="toggle" type="radio"
-><labell for="toggle-off">Off</labell></li>
-
-<li>Repayment notification(E-mail & SMS)<br><input id="toggle-on" name="toggle" type="radio"><labell for="toggle-on">On</labell
-><input id="toggle-off" name="toggle" type="radio"
-><labell for="toggle-off">Off</labell></li>
 
 
 
@@ -456,7 +491,12 @@
 			investorEmail: '',
 			investorName: '',
 			investorLocation: '',
-			investorImage: ''
+			investorImage: '',
+		    notification: '',
+			autodeposit: '',
+			autolending: ''
+
+
         },
         methods:{
     //  getInvestorDetail: function (){
