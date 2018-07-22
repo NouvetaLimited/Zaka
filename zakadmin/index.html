@@ -45,7 +45,7 @@
 <script src="js/index.js" charset="utf-8"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-  
+
 
     // URL BASE
     var URL_BASE = "https://zaka.co.ke";
@@ -76,7 +76,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <div id="app">
   <div class="popout font-default"></div>
-  
+
 	<div class="wrap-loader">
 		<i class="fa fa-cog fa-spin fa-3x fa-fw cog-loader"></i>
 		<i class="fa fa-cog fa-spin fa-3x fa-fw cog-loader-small"></i>
@@ -139,19 +139,19 @@
 
             <div class="form-group has-feedback">
 
-              <input type="text" class="form-control login-field custom-rounded" value="" name="email" id="username" placeholder="username" title="username" v-model="username" autocomplete="off">
+              <input type="text" class="form-control login-field custom-rounded" value="" name="email" id="username" placeholder="username"  v-model="username" autocomplete="off">
               <span class="fa fa-user form-control-feedback"></span>
              </div>
 
 
             <div class="form-group has-feedback">
-              <input type="password" class="form-control login-field custom-rounded" name="password" id="password" placeholder="Password" title="Password" v-model="password" autocomplete="off">
+              <input type="password" class="form-control login-field custom-rounded" name="password" id="password" placeholder="Password"  v-model="password" autocomplete="off">
               <span class="fa fa-lock form-control-feedback"></span>
          </div>
 
          <div class="row margin-bottom-15">
      	<div class="col-xs-7">
-     		
+
      	</div>
 
      	<div class="col-xs-5">
@@ -250,7 +250,7 @@
 
 
     <script src="http://fundme.miguelvasquez.net/public/plugins/iCheck/icheck.min.js"></script>
-    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>    
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
 </body>
 <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
@@ -268,29 +268,33 @@ var vm = new Vue({
 
 	},
 	methods:{
-       
+
     login: function(){
     this.loading =true
     if (this.username =='' || this.password == '') {
         this.loading = false
         alertify.error("Please fill in your username and password")
-        return;   
+        return;
     }
       var formData = new FormData()
       formData.append('username', this.username)
       formData.append('password', this.password)
-axios.post('https://zaka.ticketsoko.com/api/index.php?function=adminLogin', formData)
+axios.post('https://ticketsoko.com/zaka/api/index.php?function=adminLogin', formData)
   .then((response) => {
-      const uname = response.data.data.username
-    console.log(response.data.data.username);
-    if (response.data.success == true) {
+		console.log(response);
+      //
+    	// console.log(response.data.data.username);
+			console.log(response.data.success )
+    if (response.data.success === true) {
+			const uname = response.data.data.username
         alertify.success("login successful")
         setTimeout(() => {
-        window.location.replace('home.html?name=' + uname)   
+        window.location.replace('home.html?name=' + uname)
         }, 3000);
-      
-      
+
+
     } else {
+			console.log("Failed");
         alertify.error("wrong username or password")
         this.loading = false;
         this.username = '',
@@ -298,12 +302,22 @@ axios.post('https://zaka.ticketsoko.com/api/index.php?function=adminLogin', form
         return;
       //alert(response.data.message)
     }
-    
+
   }).catch((err) => {
-    
+		console.error(new Error(err))
   });
     }
 	},
+	beforeCreate() {
+		this.loading = false;
+	},
+    beforeMount ()  {
+        this.loading = false
+    },
+    created (){
+        console.log("here");
+    }
+
 
 })
 
