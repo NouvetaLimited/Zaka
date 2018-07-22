@@ -353,7 +353,7 @@ var URL_BASE = "https://ianjravin.github.io/zaka-dashboard/";
                         <img :src="ent.image" style="height: auto !important;" />
                       </div>
                       <div class="product-info">
-                        <a href="single.html" target="_blank" class="product-title" v-cloak>{{ent.reason}}
+                        <a href="#" class="product-title" v-cloak>{{ent.reason}}
                         	<span class="label label-success pull-right" v-cloak>{{ent.status}}</span>
                         	</a>
                         <span class="product-description" v-cloak>
@@ -554,7 +554,7 @@ new Morris.Area({
             offerAccepted: '',
             regTotal: '',
             name:'',
-            members: [] 
+            members: []
         },
         methods: {
             getEntrepreneur: function () {
@@ -580,12 +580,12 @@ new Morris.Area({
                 response.data.data.forEach(element => {
                   this.members.push(element)
                   console.log(element)
-                  
+
                 });
                 console.log("Inve", response);
-                
+
               }).catch((err) => {
-                
+
               });
             },
 
@@ -599,7 +599,7 @@ new Morris.Area({
                       this.campaignpostsum = response.data.data.totalCampaignPostAmount
                       this.offerAccepted = response.data.data.totalOfferAcceptedSumAmount
                       this.regTotal = response.data.data.totalRegistrationFee
-                      
+
                     }).catch((err) => {
                         console.log(err);
 
@@ -616,8 +616,8 @@ new Morris.Area({
         var links = [...document.getElementsByClassName('navigateto')]
         links.forEach(element => {
             element.href += `?name=${this.name}`
-            console.log(element.href) 
-            //console.log("url", this.name)           
+            console.log(element.href)
+            //console.log("url", this.name)
         });
       }
 
