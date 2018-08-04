@@ -49,7 +49,7 @@
         }
               @import url(https://fonts.googleapis.com/css?family=Raleway:400,600,700,800);
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
-           [v-cloak] {
+  [v-cloak] {
       display: none;
     }
 
@@ -195,15 +195,33 @@ figure.snip1208.hover i {
 /* body {
   background-color: #212121;
 } */
+/* [v-cloak] .v-cloak--block {
+  display: block;
+}
+[v-cloak] .v-cloak--inline {
+  display: inline;
+}
+[v-cloak] .v-cloak--inlineBlock {
+  display: inline-block;
+}
+[v-cloak] .v-cloak--hidden {
+  display: none;
+}
+[v-cloak] .v-cloak--invisible {
+  visibility: hidden;
+}
+.v-cloak--block,
+.v-cloak--inline,
+.v-cloak--inlineBlock {
+  display: none;
+} */
 
       </style>
-     
+
       <script type="text/javascript">
-
-          // URL BASE
-          var URL_BASE = "#";
-
-      </script>
+// URLBASE;
+var URL_BASE = "#";
+</script>
 
   </head>
 
@@ -215,7 +233,7 @@ figure.snip1208.hover i {
               <!-- mini logo for sidebar mini 50x50 pixels -->
               <span class="logo-mini"><b><i class="ion ion-ios-bolt"></i></b></span>
               <!-- logo for regular state and mobile devices -->
-              <span class="logo-lg" v-cloak><i class="fa fa-desktop"></i> Welcome, {{name}}</span>
+              <span class="logo-lg" v-cloak> <i class="fa fa-desktop" v-cloak></i> Welcome, {{name}}</span>
           </a>
           <nav class="navbar navbar-static-top" role="navigation">
               <!-- Sidebar toggle button-->
@@ -227,7 +245,7 @@ figure.snip1208.hover i {
                   <ul class="nav navbar-nav">
 
                     <li>
-                       
+
                     </li>
 
                     <li>
@@ -236,7 +254,7 @@ figure.snip1208.hover i {
 
 
                       <li>
-                         
+
                       </li>
 
 
@@ -246,7 +264,7 @@ figure.snip1208.hover i {
                       </li>
 
                       <li>
-                          
+
                       </li>
 
                       <!-- User Account Menu -->
@@ -283,6 +301,9 @@ figure.snip1208.hover i {
               </div>
           </nav>
       </header>
+      <div class="" v-if="waiting">
+        Loading...
+      </div>
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
 
@@ -394,7 +415,7 @@ figure.snip1208.hover i {
                           </div>
                       </div> -->
                   <!-- </div>./col -->
-                 
+
 
               </div>
               <div class="row">
@@ -419,10 +440,10 @@ figure.snip1208.hover i {
                               <p>Goal: {{post.amount}}</p>
                               <p>Location: {{post.location}}</p>
 
-                              <a v-bind:href=" '/single.html' + createUrls + '&postId=' + post.id" class="yolo">Learn More</a>
+                              <a v-bind:href=" 'singlepost.html' + createUrls + '&postId=' + post.id" class="yolo">Learn More</a>
                             </figcaption><a href="#"></a>
                           </figure>
-                         
+
               </div>
                                     <!-- <div class="chart" id="chart1"></div> -->
                                 </div>
@@ -451,7 +472,7 @@ figure.snip1208.hover i {
 
               </div><!-- ./row -->
 
-              
+
           </section>
       </div>
      <div>
@@ -520,7 +541,8 @@ figure.snip1208.hover i {
 
   <!-- Morris -->
   <script src="js/raphael-min.js" type="text/javascript"></script>
-  <script src="js/morris.min.js" type="text/javascript"></script> 
+  <script src="js/morris.min.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
   <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
@@ -532,244 +554,253 @@ figure.snip1208.hover i {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script> -->
 <!-- <script src="https://unpkg.com/vue-router"></script> -->
 <script>
-    var app = new Vue({
-        el:'#app',
-        data:{
-            name: '',
-            account: '',
-            id: '',
-            accountBalance: '',
-            amountInvested: '',
-            amountPaidBack: '',
-            totalRevenue: '',
-            test: '',
-            cashmoney: 0,
-            phoneno: '',
-            randstring: '',
-            loading: false,
-            othernumber: false,
-            investorProfilePicture: '',
-            posts: [],
-            charts: [],
-            data: [],
-            registration: 1000,
-            selectedPosts:[]
-        },
-        methods:{
- payme:  function() {
-    
- if (this.phoneno == '' || this.cashmoney == '' || this.cashmoney == 0) {
-    $("#DonateModal").modal('hide')
-     alertify.alert("please fill the form before proceeding")
-     this.phoneno= ''
-     this.cashmoney = ''
-     setTimeout(() => {
-        $("#DonateModal").modal('show')   
-     }, 2000);
-     
-     return;
- }
- this.loading = true
- this.randstring = (Math.random() + 1).toString(36).substring(5).toUpperCase()
-console.log(this.phoneno)
- const url =  'https://ticketsoko.com/zaka/api/index.php?function=pay'
-  var formData = new FormData
-  formData.append('phoneNumber',this.phoneno)
-  formData.append('amount',this.cashmoney)
-  formData.append('transactionCode', this.randstring)
-  console.log(this.randstring);
-  console.log(formData);
-  fetch(url, {
-    method: 'POST',
-    body: formData
-  }).then(function (response) {
-      setTimeout(() => {
-        if(response.statusText == 'OK' ){
-            this.loading = false
-            $("#DonateModal").modal('hide')
-            
-            
-          alertify.alert('Push Notification sent to your Phone to Load Your wallet')
+var app = new Vue({
+  el: "#app",
+  data: {
+    name: "",
+    account: "",
+    id: "",
+    accountBalance: "",
+    amountInvested: "",
+    amountPaidBack: "",
+    totalRevenue: "",
+    test: "",
+    cashmoney: 0,
+    phoneno: "",
+    randstring: "",
+    loading: false,
+    othernumber: false,
+    investorProfilePicture: "",
+    posts: [],
+    charts: [],
+    data: [],
+    registration: 1000,
+    selectedPosts: [],
+    waiting: true
+  },
+  methods: {
+    payme: function() {
+      if (this.phoneno == "" || this.cashmoney == "" || this.cashmoney == 0) {
+        $("#DonateModal").modal("hide");
+        alertify.alert("please fill the form before proceeding");
+        this.phoneno = "";
+        this.cashmoney = "";
+        setTimeout(() => {
+          $("#DonateModal").modal("show");
+        }, 2000);
+
+        return;
       }
-     console.log(response);     
-      }, 3000)
-      
-  })
-      },
-    getInvestorInformation: function(){
-        axios.get(`https://ticketsoko.com/zaka/api/index.php?function=getInvestors&keyword=${this.id}`)
-        .then((response) => {
-            response.data.data.forEach(element => {
-                this.investorProfilePicture = element.image
-                console.log(element.image)
-                
-            });
-            console.log("I am here",response)
-            
-        }).catch((err) => {
-            console.log(err)
-            
+      this.loading = true;
+      this.randstring = (Math.random() + 1)
+        .toString(36)
+        .substring(5)
+        .toUpperCase();
+      console.log(this.phoneno);
+      const url = "https://ticketsoko.com/zaka/api/index.php?function=pay";
+      var formData = new FormData();
+      formData.append("phoneNumber", this.phoneno);
+      formData.append("amount", this.cashmoney);
+      formData.append("transactionCode", this.randstring);
+      console.log(this.randstring);
+      console.log(formData);
+      fetch(url, {
+        method: "POST",
+        body: formData
+      }).then(function(response) {
+        setTimeout(() => {
+          if (response.statusText == "OK") {
+            this.loading = false;
+            $("#DonateModal").modal("hide");
+
+            alertify.alert(
+              "Push Notification sent to your Phone to Load Your wallet"
+            );
+          }
+          console.log(response);
+        }, 3000);
+      });
+    },
+    getInvestorInformation: function() {
+      axios
+        .get(
+          `https://ticketsoko.com/zaka/api/index.php?function=getInvestors&keyword=${
+            this.id
+          }`
+        )
+        .then(response => {
+          response.data.data.forEach(element => {
+            this.investorProfilePicture = element.image;
+            console.log(element.image);
+            this.waiting = false;
+          });
+          console.log("I am here", response);
+        })
+        .catch(err => {
+          console.log(err);
         });
     },
-     getInvestorDetail: function (){
-      let queryString = decodeURIComponent(window.location.search);
-      queryString = queryString.substring(1).split("&");
-      let details = queryString[0].split("=");
-      this.account =  decodeURI(details[1]);
-      localStorage.setItem('number', this.account);
-     details = queryString[1].split("=");
-     this.name =  decodeURI(details[1]);
-     details = queryString[2].split("="); 
-     this.id = decodeURI(details[1]);
-      fetch(`https://ticketsoko.com/zaka/api/index.php?function=InvestorsDashboardData&accountNumber=${this.account}`)
-  .then( response => response.json())
-  .then(data => {
-    var formatter = new Intl.NumberFormat()
-        this.accountBalance = formatter.format(data.data.accountBalance);
-        this.amountInvested = formatter.format(data.data.totalAmountInvested);
-        this.amountPaidBack = formatter.format(data.data.totalAmountPaidBack);
-        this.totalRevenue = formatter.format(data.data.totalRevenue);
-  })
-  .catch(function(err) {
-    console.log('Fetch Error :-S', err);
-  });
-
-      },
-
-      populateChart: function (){
-          var clean
-          console.log("Number" + this.id)
-axios.post(`https://ticketsoko.com/zaka/api/index.php?function=investorData&keyword=${this.id}`)
-.then((result) => {
-    var data = JSON.stringify(result.data.data)
-    var final = JSON.parse(data)
-    //this.data = final
-    final.forEach(element => {
-        this.data.push(element)
-        
-    });
-    var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-    new Morris.Area({
-    element: 'chart1',
-    data: this.data,   
-     // data: [       
-
-    //     { days: '2017-12-14', value: 0 },
-
-
-
-    // ],
-    // The name of the data record attribute that contains x-values.
-    xkey: 'days',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['value'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['Investments'],
-    pointFillColors: ['#FF5500'],
-    lineColors: ['#DDD'],
-    hideHover: 'auto',
-    gridIntegers: true,
-    resize: true,
-    xLabels: 'days',
-    xLabelFormat: function (x) {
-        var month = IndexToMonth[ x.getMonth() ];
-        var year = x.getFullYear();
-        var day = x.getDate();
-        return  day +' ' + month;
-        //return  year + ' '+ day +' ' + month;
-    },
-    dateFormat: function (x) {
-        var month = IndexToMonth[ new Date(x).getMonth() ];
-        var year = new Date(x).getFullYear();
-        var day = new Date(x).getDate();
-        return day +' ' + month;
-        //return year + ' '+ day +' ' + month;
+    getInvestorDetail: function() {
+      // let queryString = decodeURIComponent(window.location.search);
+      // queryString = queryString.substring(1).split("&");
+      // let details = queryString[0].split("=");
+      this.account = Cookies.get('phone');
+      localStorage.setItem("number", this.account);
+     // details = queryString[1].split("=");
+      this.name = Cookies.get('name')
+     // details = queryString[2].split("=");
+      this.id = Cookies.get('uid')
+      fetch(
+        `https://ticketsoko.com/zaka/api/index.php?function=InvestorsDashboardData&accountNumber=${
+          this.account
+        }`
+      )
+        .then(response => response.json())
+        .then(data => {
+          var formatter = new Intl.NumberFormat();
+          this.accountBalance = formatter.format(data.data.accountBalance);
+          this.amountInvested = formatter.format(data.data.totalAmountInvested);
+          this.amountPaidBack = formatter.format(data.data.totalAmountPaidBack);
+          this.totalRevenue = formatter.format(data.data.totalRevenue);
+          this.waiting = false;
+        })
+        .catch(function(err) {
+          console.log("Fetch Error :-S", err);
+        });
     },
 
-})   
-     //var clean = JSON.parse(data)
-    // this.data = clean
-    // clean.forEach(element => {
-    //     this.data.push(element)        
-    //     console.log("Final", element)
-        
-    // });
-    // console.log("clean", clean)
-    // console.log(data)
-    // console.log("Chart Data" + result)
-    
-}).catch((err) => {
-    console.log(err)
-    
-});  
-      },
-      getEntrepreneur: function () {
-                axios.post('https://ticketsoko.com/zaka/api/index.php?function=getEntrepreneur')
-                    .then((response) => {
-                        console.log(" ENT", response.data.data)
-                        response.data.data.forEach(el => {
-                            console.log("El", el)
-                            //this.entrepreneurs.push(el.Entrepreneur);
+    populateChart: function() {
+      var clean;
+      console.log("Number" + this.id);
+      axios
+        .post(
+          `https://ticketsoko.com/zaka/api/index.php?function=investorData&keyword=${
+            this.id
+          }`
+        )
+        .then(result => {
+          var data = JSON.stringify(result.data.data);
+          var final = JSON.parse(data);
+          //this.data = final
+          final.forEach(element => {
+            this.data.push(element);
+            this.waiting = false;
+          });
 
-                            if (el.CampaignPost) {
-                                el.CampaignPost.forEach(campaign => {
-                                    //console.log("campaign", campaign)
-                                    this.posts.push(campaign.CampaignPost)
-                                    //this.selectedPosts = this.posts.splice(5)
-                                    //console.log("SELPOSTS", this.selectedPosts)
-                                    console.log("SELPOSTS", this.posts.length)
+          var IndexToMonth = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ];
+          new Morris.Area({
+            element: "chart1",
+            data: this.data,
+            // data: [
 
-                                });
-                                 this.selectedPosts = this.posts
-                                    console.log("SELPOSTS", this.selectedPosts)
-                                    console.log("SELPOSTS", this.posts.length)
+            //     { days: '2017-12-14', value: 0 },
 
-                            } 
-                            else {
-                                this.posts.push({})
-
-                            }
-
-                        });
-
-                    }).catch((err) => {
-                        console.log(err);
-
-
-                    });
+            // ],
+            // The name of the data record attribute that contains x-values.
+            xkey: "days",
+            // A list of names of data record attributes that contain y-values.
+            ykeys: ["value"],
+            // Labels for the ykeys -- will be displayed when you hover over the
+            // chart.
+            labels: ["Investments"],
+            pointFillColors: ["#FF5500"],
+            lineColors: ["#DDD"],
+            hideHover: "auto",
+            gridIntegers: true,
+            resize: true,
+            xLabels: "days",
+            xLabelFormat: function(x) {
+              var month = IndexToMonth[x.getMonth()];
+              var year = x.getFullYear();
+              var day = x.getDate();
+              return day + " " + month;
+              //return  year + ' '+ day +' ' + month;
+            },
+            dateFormat: function(x) {
+              var month = IndexToMonth[new Date(x).getMonth()];
+              var year = new Date(x).getFullYear();
+              var day = new Date(x).getDate();
+              return day + " " + month;
+              //return year + ' '+ day +' ' + month;
             }
-     
-        },
-        computed: {
-            createUrls: function () {
-                // var links = [...document.getElementsByClassName('navigateto')]
-                // links.forEach(element => {
-                //     element.href += `?objects=${this.account}&names=${this.name}&id=${this.id}`
-                //     //console.log(element.href)  
-                    return `?objects=${this.account}&names=${this.name}&id=${this.id}`;      
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getEntrepreneur: function() {
+      axios
+        .post(
+          "https://ticketsoko.com/zaka/api/index.php?function=getEntrepreneur"
+        )
+        .then(response => {
+          console.log(" ENT", response.data.data);
+          response.data.data.forEach(el => {
+            console.log("El", el);
+            //this.entrepreneurs.push(el.Entrepreneur);
+
+            if (el.CampaignPost) {
+              el.CampaignPost.forEach(campaign => {
+                //console.log("campaign", campaign)
+                this.posts.push(campaign.CampaignPost);
+                //this.selectedPosts = this.posts.splice(5)
+                //console.log("SELPOSTS", this.selectedPosts)
+                console.log("SELPOSTS", this.posts.length);
+              });
+              this.selectedPosts = this.posts;
+              console.log("SELPOSTS", this.selectedPosts);
+              console.log("SELPOSTS", this.posts.length);
+            } else {
+              this.posts.push({});
             }
-      },
-    
-        created: function (){
-            this.getInvestorDetail()           
-            this.getInvestorInformation()
-           
-           
-        },
-        mounted:function (){
-        this.createUrls
-        this.populateChart()
-        this.phoneno = localStorage.getItem('number' || '')
-        //this.populateChart()
-        
-        },
-        beforeMount: function(){
-            this.getEntrepreneur()
-        }
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getCookies (){
+               const name = Cookies.get('name')
+               const phone = Cookies.get('phone')
+               const _id = Cookies.get('uid')
 
-    })
+               console.log("Cookies", name, phone,);
+            }
+  },
+  computed: {
+    createUrls: function() {
+      return `?objects=${this.account}&names=${this.name}&id=${this.id}`;
+    }
+  },
 
+  created: function() {
+    this.getInvestorDetail();
+    this.getInvestorInformation();
+    this.getCookies()
+  },
+  mounted: function() {
+    this.createUrls;
+    this.populateChart();
+    this.phoneno = localStorage.getItem("number" || "");
+  },
+  beforeMount: function() {
+    this.getEntrepreneur();
+  }
+});
 </script>
 
 
