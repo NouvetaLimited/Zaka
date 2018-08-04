@@ -14,7 +14,7 @@
 	<meta name="format-detection" content="telephone=no" />
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="css/styles.css" rel="stylesheet" type="text/css" />
 	<link href="vendor/magnific/magnific-popup.css" rel="stylesheet" type="text/css" />
 	<link href="vendor/owl-carousel/css/owl.carousel.css" rel="stylesheet" type="text/css" />
 	<link href="vendor/owl-carousel/css/owl.theme.css" rel="stylesheet" type="text/css" />
@@ -212,6 +212,7 @@
 	<!--<script src="js/circle-progress.js"></script>-->
 	<!-- Circle Progress Bars -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a0ab968a715c6db"></script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>     
 	<!--<script type="text/javascript">
 		var Tawk_API = Tawk_API || {},
@@ -265,12 +266,17 @@
 						console.log(response)
                         if (response.data.success===true){
 							console.log(response.data.data);
-							var unumber = response.data.data.phoneNumber;
-							var uname = response.data.data.name;
-							var uid = response.data.data.id;
+							// var unumber = response.data.data.phoneNumber;
+							// var uname = response.data.data.name;
+							// var uid = response.data.data.id;
 							alertify.success("Login Successful")
+						  Cookies.set('name', response.data.data.name);
+                          Cookies.set('phone', response.data.data.phoneNumber)
+                          Cookies.set('uid', response.data.data.id)
 							setTimeout(() => {
-							window.location.replace("investor-dashboard/index.html?objects="+unumber+"&names="+uname+"&id="+uid);	
+								window.location.href = 'investor-dashboard/index.html'
+								// window.location.replace("investor-dashboard/index.html");
+							// window.location.replace("investor-dashboard/index.html?objects="+unumber+"&names="+uname+"&id="+uid);	
 							}, 3000);
                           
 							//
@@ -288,8 +294,8 @@
 						}
                     })
 
-                    .catch(function(error){
-
+                    .catch((error) => {
+						console.log(error);
                     })
             }
         }
